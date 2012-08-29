@@ -1,0 +1,15 @@
+simple_sum:
+  desc: 'Given two numbers, return their sum.'
+  in: int, int
+  out: int
+  [1, 1]: 2
+  [0, 9000]: 9000
+  [-13, 37]: 24
+
+array_sum:
+  desc: 'Given an array of numbers, return their sum.'
+  in: [int]
+  out: int
+  [1, 2, 3, 4, 5]: 15
+  [0, 1, 1, 2, 3, 5]: 12
+  [1, 2, 4, 8, 16, 32]: 63

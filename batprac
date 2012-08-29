@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+require 'yaml'
+
+base_func = {
+  'c'       => "%s %s(%s) {\n\t\n}",
+  'go'      => "func %s(%s) %s {\n\t\n}",
+  'haskell' => "%s :: %s -> %s\n%s = ",
+  'ruby'    => "def %s(%s)\n  \nend",
+  'python'  => "def %s(%s)\n    ",
+}
+
+signatures = {
+  'c'       => %w[out name in],
+  'go'      => %w[name in out],
+  'haskell' => %w[name in out name],
+  'ruby'    => %w[name in],
+  'python'  => %w[name in]
+}
+
+
+tests = YAML.load_file 'tests.yml'
+
+tests.each do |name, spec|
+  spec.update 'name' => name
+
+  base_func.each do |lang, func|
+    puts func % [*spec.values_at(*signatures[lang])]
+  end
+end
